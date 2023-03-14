@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DetailReglement{% endblock %}
+
+{% block body %}
+    <h1>DetailReglement</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Mois</th>
+                <th>Annee</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for detail_reglement in detail_reglements %}
+            <tr>
+                <td>{{ detail_reglement.id }}</td>
+                <td>{{ detail_reglement.mois }}</td>
+                <td>{{ detail_reglement.annee }}</td>
+                <td>
+                    <a href="{{ path('app_detail_reglement_show', {'id': detail_reglement.id}) }}">show</a>
+                    <a href="{{ path('app_detail_reglement_edit', {'id': detail_reglement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_detail_reglement_new') }}">Create new</a>
+{% endblock %}

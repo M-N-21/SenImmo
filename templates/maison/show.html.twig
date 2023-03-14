@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Maison{% endblock %}
+
+{% block body %}
+    <h1>Maison</h1>
+<div class="row justify-content-center">
+    {% for i in maison.images %}
+        <div class="col-md-3">
+            <img src="{{asset('/upload/' ~ i.name) }}" alt="" class="img-fluid">
+        </div>
+    {% endfor %}
+</div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Superficie</th>
+                <td>{{ maison.superficie }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ maison.numero }}</td>
+            </tr>
+            <tr>
+                <th>NbrePiece</th>
+                <td>{{ maison.nbrePiece }}</td>
+            </tr>
+            <tr>
+                <th>NbreEtage</th>
+                <td>{{ maison.nbreEtage }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ maison.description }}</td>
+            </tr>
+            <tr>
+                <th>Disponibilite</th>
+                <td style="background: {{maison.disponibilite ? 'lightgreen' : 'red'}}">{{ maison.disponibilite ? 'Oui' : 'Non' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_ADMIN') %}
+
+    <a href="{{ path('app_maison_index') }}">back to list</a>
+
+    <a href="{{ path('app_maison_edit', {'id': maison.id}) }}">edit</a>
+
+    {{ include('maison/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

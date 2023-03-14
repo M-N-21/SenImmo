@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reglement{% endblock %}
+
+{% block body %}
+    <h1>Reglement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Numero</th>
+                <td>{{ reglement.numero }}</td>
+            </tr>
+            <tr>
+                <th>DateReglement</th>
+                <td>{{ reglement.dateReglement ? reglement.dateReglement|date('d-m-Y H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reglement_index') }}" class="link-info">revoir la liste</a>
+
+    <a href="{{ path('app_reglement_edit', {'id': reglement.id}) }}" class="link link-secondary">editer</a>
+
+    {{ include('reglement/_delete_form.html.twig') }}
+{% endblock %}

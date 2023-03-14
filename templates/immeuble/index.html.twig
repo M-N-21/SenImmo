@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Immeuble{% endblock %}
+
+{% block body %}
+    <h1>Immeuble</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre Etage</th>
+                <th>Date Construction</th>
+                <th>Nom Immeuble</th>
+                <th>Description</th>
+                <th>Disponibilite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for immeuble in immeubles %}
+            <tr>
+                <td>{{ immeuble.nbreEtage }}</td>
+                <td>{{ immeuble.dateConstruction ? immeuble.dateConstruction|date('d-m-Y') : '' }}</td>
+                <td>{{ immeuble.nomImmeuble }}</td>
+                <td>{{ immeuble.description }}</td>
+                <td style="background: {{immeuble.disponibilite ? 'lightgreen' : 'red'}}">{{ immeuble.disponibilite ? 'Oui' : 'Non' }}</td>
+
+                <td>
+                    <a href="{{ path('app_immeuble_show', {'id': immeuble.id}) }}" class="link-info">voir</a>
+                    <a href="{{ path('app_immeuble_edit', {'id': immeuble.id}) }}" class="link-secondary">editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun immeuble n'a été enregistré</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_immeuble_new') }}">Nouvel Immeuble</a>
+{% endblock %}

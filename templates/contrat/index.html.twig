@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contrat{% endblock %}
+
+{% block body %}
+    <h1>Contrat</h1>
+    <div align="center">
+        {% if vente == true %}
+
+        <a href="{{ path('app_contratventemaison_new') }}" class="btn btn-outline-success">Nouveau Contrat Maison</a>
+        <a href="{{ path('app_contratventeappartement_new') }}" class="btn btn-outline-success">Nouveau Contrat Appartement</a>
+        <a href="{{ path('app_contratventeparcelle_new') }}" class="btn btn-outline-success">Nouveau Contrat Parcelle</a>
+        {# <a href="{{ path('app_contratterrain_new') }}" class="btn btn-outline-success">Nouveau Contrat Terrain</a> #}
+        {% else %}
+            <a href="{{ path('app_contratmaison_new') }}" class="btn btn-outline-success">Nouveau Contrat Maison</a>
+            <a href="{{ path('app_contratappartement_new') }}" class="btn btn-outline-success">Nouveau Contrat Appartement</a>
+            <a href="{{ path('app_contratparcelle_new') }}" class="btn btn-outline-success">Nouveau Contrat Parcelle</a>
+        {% endif %}
+
+    </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numero</th>
+                <th>Date Contrat</th>
+                <th>Montant</th>
+                <th>Bien</th>
+                {% if vente == false %}
+                    <th>Date Debut</th>
+                    <th>Date Fin</th>
+                {% endif %}
+                
+                
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contrat in contrats %}
+            <tr>
+                <td>{{ contrat.numero }}</td>
+                <td>{{ contrat.dateContrat ? contrat.dateContrat|date('d-m-Y H:i:s') : '' }}</td>
+                <td>{{ contrat.montant }}</td>
+                <td>
+                    {% if contrat.maison != null %}
+                        {{ contrat.maison }}
+                    {% else %}
+                        {% if contrat.parcelle != null %}
+                            {{ contrat.maison }}
+                        {% else %}
+                            {% if contrat.appartement != null %}
+                                {{ contrat.appartement }}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                    
+                </td>
+                {% if vente == false %}
+                    <td>{{ contrat.dateDebut ? contrat.dateDebut|date('Y-m-d') : '' }}</td>
+                    <td>{{ contrat.dateFin ? contrat.dateFin|date('Y-m-d') : '' }}</td>
+                {% endif %} 
+                <td>
+                {% if contrat.maison != null %}
+                    <a href="{{ path('app_contratmaison_show', {'id': contrat.id}) }}" class="link-info">voir</a>
+                    <a href="{{ path('app_contratmaison_edit', {'id': contrat.id}) }}" class="link-secondary">editer</a>
+                    {% else %}
+                        {% if contrat.parcelle != null %}
+                            <a href="{{ path('app_contratparcelle_show', {'id': contrat.id}) }}" class="link-info">voir</a>
+                            <a href="{{ path('app_contratparcelle_edit', {'id': contrat.id}) }}" class="link-secondary">editer</a>
+                            {% else %}
+                                {% if contrat.parcelle %}
+                                    <a href="{{ path('app_contratappartement_show', {'id': contrat.id}) }}" class="link-info">voir</a>
+                                    <a href="{{ path('app_contratappartement_edit', {'id': contrat.id}) }}" class="link-success">editer</a>
+                                {% endif %}
+                        {% endif %}
+                {% endif %}
+                
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun contrat n'a été enregistré</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'home/index.html.twig' %}
+
+{% block body %}
+    <div style="margin-top: 120px;">
+        <h1>Annonces Maisons</h1>
+        <div class="row  justify-content-center">
+            {% for m in maisons %}
+                <div class="card border border-success shadow-0 col-md-3 m-2 p-0 ">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="{{asset('upload/' ~ m.images.first )}}" alt="" class="img-a img-fluid">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ m }}</h5>
+                        <a type="button" href="{{ path('app_maison_show', {'id': m.id}  ) }}" class="btn btn-outline-success">Voir Annonce</a>
+                    </div>
+                </div>
+                    <!-- End carousel item -->
+            {% endfor %}
+        </div>
+
+        <h1>Annonces Immeubles</h1>
+        <div class="row justify-content-center">
+            {% for im in immeubles %}
+                <div class="card border border-success shadow-0 col-md-3 m-2 p-0 ">
+                    <div class="bg-image hover-overlay row ripple" data-mdb-ripple-color="light">
+                        <img src="{{asset('upload/' ~ im.images.first )}}" alt="" class="img-a img-fluid">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ im }}</h5>
+                        <a type="button" href="{{ path('app_maison_show', {'id': im.id}  ) }}" class="btn btn-outline-success">Voir Annonce</a>
+                    </div>
+                </div>
+                    <!-- End carousel item -->
+            {% endfor %}
+        </div>
+
+        <h1>Annonces Appartements</h1>
+        <div class="row  justify-content-center">
+            {% for a in appartements %}
+                <div class="card border border-success shadow-0 col-md-3 m-2 p-0 ">
+                    <div class="bg-image hover-overlay row ripple" data-mdb-ripple-color="light">
+                        <img src="{{asset('upload/' ~ a.images.first )}}" alt="" class="img-a img-fluid">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ a }}</h5>
+                        <a type="button" href="{{ path('app_appartement_show', {'id': a.id}  ) }}" class="btn btn-outline-success">Voir Annonce</a>
+                    </div>
+                </div>
+                    <!-- End carousel item -->
+            {% endfor %}
+        </div>
+        <h1>Annonces Terrains</h1>
+        <div class="row  justify-content-center">
+            {% for t in terrains %}
+                <div class="card border border-success shadow-0 col-md-3 m-2 p-0 ">
+                    <div class="bg-image hover-overlay row ripple" data-mdb-ripple-color="light">
+                        <img src="{{asset('upload/' ~ t.images.first )}}" alt="" class="img-a img-fluid">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ t }}</h5>
+                        <a type="button" href="{{ path('app_terrain_show', {'id': t.id}  ) }}" class="btn btn-outline-success">Voir Annonce</a>
+                    </div>
+                </div>
+                    <!-- End carousel item -->
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

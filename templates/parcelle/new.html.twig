@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Parcelle{% endblock %}
+
+{% block body %}
+    <h1>Nouvelle Parcelle</h1>
+
+    {{ include('parcelle/_form.html.twig') }}
+
+    <a href="{{ path('app_parcelle_index') }}" class="link-info">revoir la liste</a>
+{% endblock %}

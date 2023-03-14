@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appartement{% endblock %}
+
+{% block body %}
+    <h1>Editer Appartement</h1>
+
+    {{ include('appartement/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_appartement_index') }}" class="link-info">revoir la liste</a>
+
+    {{ include('appartement/_delete_form.html.twig') }}
+{% endblock %}

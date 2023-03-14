@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DetailReglement{% endblock %}
+
+{% block body %}
+    <h1>DetailReglement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ detail_reglement.id }}</td>
+            </tr>
+            <tr>
+                <th>Mois</th>
+                <td>{{ detail_reglement.mois }}</td>
+            </tr>
+            <tr>
+                <th>Annee</th>
+                <td>{{ detail_reglement.annee }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_detail_reglement_index') }}">back to list</a>
+
+    <a href="{{ path('app_detail_reglement_edit', {'id': detail_reglement.id}) }}">edit</a>
+
+    {{ include('detail_reglement/_delete_form.html.twig') }}
+{% endblock %}

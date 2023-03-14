@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DetailReglement{% endblock %}
+
+{% block body %}
+    <h1>Edit DetailReglement</h1>
+
+    {{ include('detail_reglement/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_detail_reglement_index') }}">back to list</a>
+
+    {{ include('detail_reglement/_delete_form.html.twig') }}
+{% endblock %}

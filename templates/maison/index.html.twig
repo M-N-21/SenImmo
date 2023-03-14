@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Maison{% endblock %}
+
+{% block body %}
+    <h1>Maison</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Superficie</th>
+                <th>Numero</th>
+                <th>NbrePiece</th>
+                <th>NbreEtage</th>
+                <th>Description</th>
+                <th>Type 0ffre</th>
+                <th>Disponibilite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for maison in maisons %}
+            <tr>
+                <td>{{ maison.superficie }} m²</td>
+                <td>{{ maison.numero }}</td>
+                <td>{{ maison.nbrePiece }}</td>
+                <td>{{ maison.nbreEtage }}</td>
+                <td>{{ maison.description }}</td>
+                <td>{{ maison.offre.typeoffre }}</td>
+                <td style="background: {{maison.disponibilite ? 'lightgreen' : 'red'}}">{{ maison.disponibilite ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a href="{{ path('app_maison_show', {'id': maison.id}) }}" class="link-info">voir</a>
+                    <a href="{{ path('app_maison_edit', {'id': maison.id}) }}" class="link link-secondary">editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucune maison n'a été enregistré</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_maison_new') }}" class="link-success">Nouvelle maison</a>
+{% endblock %}

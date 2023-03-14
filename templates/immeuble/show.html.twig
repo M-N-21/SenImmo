@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Immeuble{% endblock %}
+
+{% block body %}
+    <div class="row">
+
+    <div class="col-md-6" style="background-color: #dfffd3; border-radius: 40px; margin-left: 50px; padding-top: 20px; padding-bottom: 20px">
+
+        <h1 align="center">Immeuble</h1>
+        <div class="row justify-content-center">
+            {% for i in immeuble.images %}
+                <div class="col-md-3">
+                    <img src="{{asset('/upload/' ~ i.name) }}" alt="" class="img-fluid">
+                </div>
+            {% endfor %}
+        </div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Nombre Etage</th>
+                    <td>{{ immeuble.nbreEtage }}</td>
+                </tr>
+                <tr>
+                    <th>Date Construction</th>
+                    <td>{{ immeuble.dateConstruction ? immeuble.dateConstruction|date('d-m-Y') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Nom Immeuble</th>
+                    <td>{{ immeuble.nomImmeuble }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ immeuble.description }}</td>
+                </tr>
+                <tr>
+                    <th>Disponibilite</th>
+                    <td style="background: {{immeuble.disponibilite ? 'lightgreen' : 'red'}}">{{ immeuble.disponibilite ? 'Oui' : 'Non' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    {% if is_granted('ROLE_ADMIN') %}
+
+        <div align="center">
+
+        <a href="{{ path('app_immeuble_index') }}" class="link-info">revoir la liste</a>
+
+        <a href="{{ path('app_immeuble_edit', {'id': immeuble.id}) }}" class="link link-secondary">editer</a>
+        {{ include('immeuble/_delete_form.html.twig') }}
+    </div>
+    </div>
+    <div class="col">
+        <button type="button" class="btn btn-success mt-4 fw-bold" href="" id="hide">Ajouter un appartement</button>
+        <div id="addCat">
+            {# { form_start(form) }}
+                {{ form_rest(form) }}
+                <button type="submit" class="btn btn-outline-success w-50" id="hide">Enregistrer</button>
+            {{ form_end(form) }#}
+            {{ include('appartement/_form.html.twig') }}
+        </div>
+    </div>
+    {% endif %}
+    </div>
+
+{% endblock %}

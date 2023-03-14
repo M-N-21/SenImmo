@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Terrain{% endblock %}
+
+{% block body %}
+    <h1>Terrain</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Superficie</th>
+                <th>Numero</th>
+                <th>Description</th>
+                <th>Disponibilite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for terrain in terrains %}
+            <tr>
+                <td>{{ terrain.superficie }} m²</td>
+                <td>{{ terrain.numero }}</td>
+                <td>{{ terrain.description }}</td>
+                <td style="background: {{terrain.disponibilite ? 'lightgreen' : 'red'}}">{{ terrain.disponibilite ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a href="{{ path('app_terrain_show', {'id': terrain.id}) }}" class="link-info">voir</a>
+                    <a href="{{ path('app_terrain_edit', {'id': terrain.id}) }}" class="link link-secondary">editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucun terrain n'a été enregistré</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_terrain_new') }}" class="link-success">Nouveau terrain</a>
+{% endblock %}

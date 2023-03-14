@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appartement{% endblock %}
+
+{% block body %}
+    <h1>Nouvel Appartement</h1>
+
+    {{ include('appartement/_form.html.twig') }}
+
+    <a href="{{ path('app_appartement_index') }}" class="link-info">revoir la liste</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Reglement{% endblock %}
+
+{% block body %}
+    <h1>Nouveau Reglement</h1>
+
+    {{ include('reglement/_form.html.twig') }}
+
+    <a href="{{ path('app_reglement_index') }}" class="link-info">revoir la liste</a>
+{% endblock %}

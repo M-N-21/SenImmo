@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel Immeuble{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="m-auto w-50">
+    <h1>Nouvel Immeuble</h1>
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <button type="button" class="btn btn-success mt-4 fw-bold" href="" id="hide">Ajouter une localite</button>
+    <div id="addCat">
+        {{ form_start(formc) }}
+        {{ form_rest(formc) }}
+        <button type="submit" class="btn btn-outline-success w-50" id="hide">Enregistrer</button>
+        {{ form_end(formc) }}
+    </div>
+    {{ include('immeuble/_form.html.twig') }}
+
+    <a href="{{ path('app_immeuble_index') }}" class="link-info">revoir la liste</a>
+    </div>
+</div>
+
+    {% endblock %}

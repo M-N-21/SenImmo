@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appartement{% endblock %}
+
+{% block body %}
+    <h1>Appartement</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numero</th>
+                <th>Etage</th>
+                <th>Nombre de Pieces</th>
+                <th>Disponibilité</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for appartement in appartements %}
+            <tr>
+                <td>{{ appartement.numero }}</td>
+                <td>{{ appartement.Etage }}</td>
+                <td>{{ appartement.nbrePiece }}</td>
+                <td style="background: {{maison.disponibilite ? 'lightgreen' : 'red'}}">{{ appartement.disponibilite ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a href="{{ path('app_appartement_show', {'id': appartement.id}) }}" class="link-info">Voir</a>
+                    <a href="{{ path('app_appartement_edit', {'id': appartement.id}) }}" class="link-secondary">editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun appartement n'a été enregistré</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_appartement_new') }}" class="link-success">Nouvel Appartement</a>
+{% endblock %}

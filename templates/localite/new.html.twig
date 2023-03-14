@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Localite{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="m-auto w-50">
+            <h1>Nouvelle Localite</h1>
+
+            {{ include('localite/_form.html.twig') }}
+
+            <a href="{{ path('app_localite_index') }}" class="link-info">revoir la liste</a>
+        <div/>
+    <div/>
+
+{% endblock %}

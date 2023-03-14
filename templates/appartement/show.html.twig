@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appartement{% endblock %}
+
+{% block body %}
+    <h1>Appartement</h1>
+    <div class="row justify-content-center">
+        {% for i in appartement.images %}
+            <div class="col-md-3">
+                <img src="{{asset('/upload/' ~ i.name) }}" alt="" class="img-fluid">
+            </div>
+        {% endfor %}
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Numero</th>
+                <td>{{ appartement.numero }}</td>
+            </tr>
+            <tr>
+                <th>Etage</th>
+                <td>{{ appartement.Etage }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de Pieces</th>
+                <td>{{ appartement.nbrePiece }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% if is_granted('ROLE_ADMIN') %}
+        
+        <a href="{{ path('app_appartement_index') }}">revoir la liste</a>
+
+        <a href="{{ path('app_appartement_edit', {'id': appartement.id}) }}" class="link-secondary">edit</a>
+
+        {{ include('appartement/_delete_form.html.twig') }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer Parcelle{% endblock %}
+
+{% block body %}
+    <h1>Editer Parcelle</h1>
+
+    {{ include('parcelle/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_parcelle_index') }}" class="link-info">revoir la liste</a>
+
+    {{ include('parcelle/_delete_form.html.twig') }}
+{% endblock %}

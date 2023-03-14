@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Localite{% endblock %}
+
+{% block body %}
+    <h1>Localite</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Region</th>
+                <th>Ville</th>
+                <th>Quartier</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for localite in localites %}
+            <tr>
+                <td>{{ localite.region }}</td>
+                <td>{{ localite.ville }}</td>
+                <td>{{ localite.quartier }}</td>
+                <td>
+                    <a href="{{ path('app_localite_show', {'id': localite.id}) }}" class="link-info">voir</a>
+                    <a href="{{ path('app_localite_edit', {'id': localite.id}) }}" class="link link-secondary">editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucune localité a été enregistré</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_localite_new') }}" class="link-success">Nouvelle localite</a>
+{% endblock %}

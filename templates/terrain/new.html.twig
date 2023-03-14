@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Terrain{% endblock %}
+
+{% block body %}
+    <h1>Nouveau Terrain</h1>
+
+    {{ include('terrain/_form.html.twig') }}
+
+    <a href="{{ path('app_terrain_index') }}" class="link-info">revoir la liste</a>
+{% endblock %}

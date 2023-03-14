@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_localite_delete', {'id': localite.id}) }}" onsubmit="return confirm('Voulez vous vr?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ localite.id) }}">
+    <button class="btn btn-danger">Supprimer</button>
+</form>
